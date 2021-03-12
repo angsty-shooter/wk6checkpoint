@@ -1,7 +1,7 @@
 <template>
   <div class="col-4">
     <div class="card post">
-      <img class="card-img-top" src="" alt="post-image">
+      <img class="card-img-top" :src="post.creator? post.creator.picture:''" alt="post-image">
       <h4 class="card title">{{post.title}}</h4>
       <p class="card author">{{post.body}}</p>
     </div>
@@ -12,7 +12,7 @@
 export default {
   name: 'Post',
   props: {
-    postData: Object
+    post: Object
   },
 
   setup () {

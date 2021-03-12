@@ -1,6 +1,9 @@
 <template>
   <div class="row">
-    <Post v-for="post in state.posts" :key="post" :postData="post" />
+    <!-- NOTE v-for is grabbing a singular post from state -->
+    <!-- NOTE Key identifies child post from component -->
+    <!-- NOTE postData is a prop grabbing the object type with its name -->
+    <Post v-for="postData in state.posts" :key="postData._id" :post="postData" />
   </div>
 </template>
 
@@ -14,18 +17,20 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
+      // NOTE state.posts is storing all of the posts
       posts: computed(() => AppState.posts)
-      // newPosts: {}
     })
 
+    // NOTE on Mountedt() grabs posts on page load (aka AppState.posts)
     onMounted(() => {
-      postService.getposts()
+      postService.getPosts()
     })
 
     return {
       state
     }
   },
+  // NOTE the components we are using on this page
   components: {
     Post
   }
@@ -34,7 +39,6 @@ export default {
 
 <style scoped lang="scss">
 .home{
-  text-align: center;
   user-select: none;
   > img{
     height: 200px;
