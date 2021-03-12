@@ -7,7 +7,6 @@ class PostService {
     try {
       const res = await api.get('blogs')
       AppState.posts = res.data
-      console.log(res.data)
     } catch (error) {
       logger.error()
     }
