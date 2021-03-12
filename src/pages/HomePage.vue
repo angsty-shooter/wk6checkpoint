@@ -1,14 +1,14 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Posts/Blogs</span>
-    </h1>
+  <div class="row">
+    <Post v-for="post in state.posts" :key="post" :postData="post" />
   </div>
 </template>
 
 <script>
 import { AppState } from '../AppState'
-import { reactive, computed } from 'vue'
+import { reactive, computed, onMounted } from 'vue'
+import Post from '../components/post'
+import { postService } from '../services/PostService'
 
 export default {
   name: 'Home',
@@ -18,9 +18,16 @@ export default {
       // newPosts: {}
     })
 
+    onMounted(() => {
+      postService.getposts()
+    })
+
     return {
       state
     }
+  },
+  components: {
+    Post
   }
 }
 </script>

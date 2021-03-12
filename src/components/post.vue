@@ -10,9 +10,9 @@
 
 <script>
 export default {
-  name: 'post',
+  name: 'Post',
   props: {
-    post: Object
+    postData: Object
   },
 
   setup () {

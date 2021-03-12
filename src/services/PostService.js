@@ -3,13 +3,12 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class PostService {
-
-  async getPost(){
+  async getPost() {
     try {
-    const res = await api.get('creatorId')
+      const res = await api.get('creatorId')
       AppState.posts = res.data
     } catch (error) {
-      logger.error(error)
+      logger.error()
     }
   }
 }
