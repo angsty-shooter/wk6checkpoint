@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 export const baseURL = window.location.origin.includes('localhost') ? 'http://localhost:3000' : ''
 export const api = Axios.create({
-  baseURL,
+  baseURL: 'https://bcw-sandbox.herokuapp.com/api/blogs',
   timeout: 8000
 })
 
