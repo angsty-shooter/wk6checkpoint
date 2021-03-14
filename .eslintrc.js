@@ -24,12 +24,11 @@ module.exports = {
     'vue/max-attributes-per-line': [ERROR, {
       singleline: 5,
       multiline: {
-        max: 1,
+        max: 2,
         allowFirstLine: true
       }
     }],
     'vue/html-self-closing': OFF,
-    'no-unused-vars': PROD ? ERROR : WARN,
-    'lines-between-class-members': PROD ? ERROR : WARN
+    'no-unused-vars': PROD ? ERROR : WARN
   }
 }
