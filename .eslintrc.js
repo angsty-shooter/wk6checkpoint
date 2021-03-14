@@ -29,6 +29,7 @@ module.exports = {
       }
     }],
     'vue/html-self-closing': OFF,
-    'no-unused-vars': PROD ? ERROR : WARN
+    'no-unused-vars': PROD ? ERROR : WARN,
+    'lines-between-class-members': PROD ? ERROR : WARN
   }
 }

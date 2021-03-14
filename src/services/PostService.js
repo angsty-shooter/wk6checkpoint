@@ -13,7 +13,7 @@ class PostService {
   }
   async getPostId() {
     try {
-      const res = await api.get('blogs/' + _id)
+      const res = await api.get('blogs/')
       AppState.activePost = res.data
     } catch (error) {
       logger.error()
