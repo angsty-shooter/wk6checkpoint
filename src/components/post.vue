@@ -7,7 +7,7 @@
           {{ post.title }}
         </h5>
         <p class="author p-3">
-          {{ post.creator.name }}
+          <!-- {{ post.creator.name }} -->
         </p>
       </div>
     </router-view>
