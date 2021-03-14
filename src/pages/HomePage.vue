@@ -1,12 +1,12 @@
 <template>
-<div class="container">
-  <div class="row">
-    <!-- NOTE v-for is grabbing a singular post from state -->
-    <!-- NOTE Key identifies child post from component -->
-    <!-- NOTE postData is a prop grabbing the object type with its name -->
-    <Post v-for="postData in state.posts" :key="postData.id" :post="postData" />
+  <div class="container">
+    <div class="row">
+      <!-- NOTE v-for is grabbing a singular post from state -->
+      <!-- NOTE Key identifies child post from component -->
+      <!-- NOTE postData is a prop grabbing the object type with its name -->
+      <Post v-for="postData in state.posts" :key="postData.id" :post="postData" />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
