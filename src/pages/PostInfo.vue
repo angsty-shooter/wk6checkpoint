@@ -14,13 +14,13 @@ export default {
   name: 'PostInfo',
   setup () {
     const route = useRoute()
-    const router = useRouter()
+    // const router = useRouter()
     const state = reactive({
       post: computed(() => AppState.activePost)
     })
 
-    onMounted(()=> {
-      postService.getPosts(route.params.id)
+    onMounted(() => {
+      postService.getPostId(route.params.id)
     })
 
     return {
