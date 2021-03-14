@@ -1,8 +1,8 @@
 <template>
-<div class="post info">
-  Post Info
-  <Post/>
-</div>
+  <div class="post info">
+    Post Info
+    <Post />
+  </div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import { postService } from '../services/PostService'
 
 export default {
   name: 'PostInfo',
-  setup () {
+  setup() {
     const route = useRoute()
     // const router = useRouter()
     const state = reactive({
