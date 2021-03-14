@@ -28,6 +28,7 @@ module.exports = {
         allowFirstLine: true
       }
     }],
-    'vue/html-self-closing': OFF
+    'vue/html-self-closing': OFF,
+    'no-unused-vars': PROD ? ERROR : WARN
   }
 }
