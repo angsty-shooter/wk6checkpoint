@@ -25,8 +25,8 @@ const routes = [
   },
   {
     path: '/post/:id',
-    name: 'PostInfo',
-    component: PostInfo
+    name: 'PostDetails',
+    component: loadPage('PostDetails')
   }
 ]
 
