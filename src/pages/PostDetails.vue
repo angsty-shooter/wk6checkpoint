@@ -12,6 +12,12 @@
           {{ state.post.body }}
         </p>
       </div>
+      <!-- Comments -->
+      <div class="row">
+        <div class="col">
+          {{ state.comment.body }}
+        </div>
+      </div>
     </div>
   </div>
   <!-- <div class="card post">
@@ -27,6 +33,7 @@ import { AppState } from '../AppState'
 import { onMounted, reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { postService } from '../services/PostService'
+import { commentService } from '../services/CommentService'
 
 export default {
   name: 'PostDetails',
@@ -34,11 +41,13 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const state = reactive({
-      post: computed(() => AppState.activePost)
+      post: computed(() => AppState.activePost),
+      comment: computed(() => AppState.activeComments)
     })
 
     onMounted(() => {
       postService.getPostId(route.params.id)
+      commentService.getCommentId(route.params.id)
     })
 
     return {
