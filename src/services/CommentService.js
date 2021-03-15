@@ -3,10 +3,11 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class CommentService {
-  async getCommentId(id) {
+  async getComments(id) {
     try {
-      const res = await api.get('comments/' + id)
-      AppState.activeComment = res.data
+      // FIXME post/:id/comments
+      const res = await api.get('api/post/:id/comments')
+      AppState.comments = res.data
     } catch (error) {
       logger.error()
     }

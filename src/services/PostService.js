@@ -5,7 +5,7 @@ import { api } from './AxiosService.js'
 class PostService {
   async getPosts() {
     try {
-      const res = await api.get('blogs')
+      const res = await api.get('api/blogs')
       AppState.posts = res.data
     } catch (error) {
       logger.error()
@@ -14,7 +14,7 @@ class PostService {
 
   async getPostId(id) {
     try {
-      const res = await api.get('blogs/' + id)
+      const res = await api.get('api/blogs/' + id)
       AppState.activePost = res.data
     } catch (error) {
       logger.error()
