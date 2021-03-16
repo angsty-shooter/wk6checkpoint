@@ -33,9 +33,10 @@
           </router-link>
         </li>
       </ul>
-      <button class="btn btn-info mr-auto" data-toggle="modal" data-target="#exampleModal">
+      <button class="btn btn-info mr-auto" data-toggle="modal" data-target="#exampleModal" v-if="user.isAuthenticated">
         Create+
       </button>
+      <!-- Modal -->
       <div class="modal fade" id="exampleModal"
            tabindex="-1" role="dialog"
            aria-labelledby="exampleModalLabel"
@@ -52,14 +53,18 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form @submit.prevent="createPost">
                 <div class="form-group">
                   <label for="inputTitle">Title</label>
-                  <input type="text" class="form-control" id="inputTitle" aria-describedby="title" placeholder="Create a title">
+                  <input v-model="state.newPost.title" type="text"
+                         class="form-control" id="inputTitle"
+                         aria-describedby="title"
+                         placeholder="Create a title"
+                  >
                 </div>
                 <div class="form-group">
                   <label for="inputBody">Description</label>
-                  <textarea class="form-control" id="inputBody" placeholder="Describe your blog"></textarea>
+                  <textarea v-model="state.newPost.body" class="form-control" id="inputBody" placeholder="Describe your blog"></textarea>
                 </div>
               </form>
             </div>
@@ -67,7 +72,7 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" @click="createPost">
                 Create Blog
               </button>
             </div>
@@ -76,7 +81,7 @@
       </div>
       <span class="navbar-text">
         <button
-          class="btn btn-outline-primary text-uppercase"
+          class="btn btn-outline-primary text-uppercase ml-auto"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -128,7 +133,8 @@ export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      newPost: {}
     })
     return {
       state,
@@ -138,6 +144,9 @@ export default {
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
+      },
+      async createPost() {
+        await postService.createPost(state.newPost)
       }
     }
   }

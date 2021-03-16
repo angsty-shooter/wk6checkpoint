@@ -24,6 +24,16 @@ class PostService {
   async createPost(rawPost) {
     try {
       const res = await api.post('api/blogs', rawPost)
+      this.getPosts()
+    } catch (error) {
+      logger.error()
+    }
+  }
+
+  async deletePost(id) {
+    try {
+      await api.delete(`api/blogs/${id}`)
+      this.getPosts()
     } catch (error) {
       logger.error()
     }
