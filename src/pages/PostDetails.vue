@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid" v-if="state.post.id">
     <div class="row">
-      <div class="col" v-if="user.isAuthenticated">
-        <button v-if="state.post.creatorId == user.id">
+      <div class="col" v-if="state.user.isAuthenticated">
+        <button class="btn btn-danger" v-if="state.post.creator.email == state.user.email" @click="deletePost">
           Delete
         </button>
       </div>
@@ -23,6 +23,19 @@
         </p>
       </div>
     </div>
+    <form @submit.prevent="createComment">
+      <div class="form-group">
+        <label for="inputComment"></label>
+        <input v-model="state.newComment.body" type="text"
+               class="form-control" id="inputComment"
+               aria-describedby="comment"
+               placeholder="Leave a Comment"
+        >
+      </div>
+      <button class="btn btn-info" type="submit">
+        Submit
+      </button>
+    </form>
     <!-- Comments -->
     <Comment class="row" v-for="commentData in state.comments" :key="commentData.id" :comment="commentData" />
   </div>
@@ -43,7 +56,9 @@ export default {
     const router = useRouter()
     const state = reactive({
       post: computed(() => AppState.activePost),
-      comments: computed(() => AppState.comments)
+      comments: computed(() => AppState.comments),
+      user: computed(() => AppState.user),
+      newComment: {}
     })
 
     onMounted(() => {
@@ -54,8 +69,15 @@ export default {
     return {
       route,
       state,
+      user: computed(() => AppState.user),
       async deletePost() {
         postService.deletePost(state.post.id)
+      },
+      async createComment() {
+        state.newComment.blog = AppState.activePost._id
+        state.newComment.creator = AppState.user.name
+        console.log(state.newComment)
+        commentService.createComment(state.newComment)
       }
     }
   },

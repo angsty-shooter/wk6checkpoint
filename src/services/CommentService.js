@@ -12,6 +12,24 @@ class CommentService {
       logger.error()
     }
   }
+
+  async createComment(rawComment) {
+    try {
+      const res = await api.post('api/comments', rawComment)
+      this.getComments(AppState.activePost.id)
+    } catch (error) {
+      logger.error()
+    }
+  }
+
+  async deleteComment(commentId) {
+    try {
+      await api.delete(`api/comments/${commentId}`)
+      this.getComments()
+    } catch (error) {
+      logger.error()
+    }
+  }
 }
 
 export const commentService = new CommentService()

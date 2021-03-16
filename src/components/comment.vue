@@ -7,17 +7,35 @@
     <p class="author p-3" v-if="comment.creator">
       {{ comment.creator.name }}
     </p>
+    <div class="div" v-if="comment.creator.email == state.user.email" @click="deleteComment">
+      <button class="btn btn-danger" v-if="state.user.isAuthenticated">
+        Delete
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
+import { reactive, computed } from 'vue'
+import { AppState } from '../AppState'
+import { commentService } from '../services/CommentService'
 export default {
   name: 'Comment',
   props: {
     comment: Object
   },
-  setup() {
+  setup(props) {
+    const state = reactive({
+      user: computed(() => AppState.user),
+      comment: props.comment
+    })
 
+    return {
+      state,
+      async deleteComment() {
+        commentService.deleteComment(state.comment.id)
+      }
+    }
   }
 }
 </script>
