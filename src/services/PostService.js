@@ -20,6 +20,14 @@ class PostService {
       logger.error()
     }
   }
+
+  async createPost(rawPost) {
+    try {
+      const res = await api.post('api/blogs', rawPost)
+    } catch (error) {
+      logger.error()
+    }
+  }
 }
 
 export const postService = new PostService()

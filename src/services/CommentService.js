@@ -6,7 +6,7 @@ class CommentService {
   async getComments(id) {
     try {
       // FIXME post/:id/comments
-      const res = await api.get('api/post/:id/comments')
+      const res = await api.get(`api/blogs/${id}/comments`)
       AppState.comments = res.data
     } catch (error) {
       logger.error()

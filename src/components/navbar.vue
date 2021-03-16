@@ -21,7 +21,7 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
@@ -33,6 +33,47 @@
           </router-link>
         </li>
       </ul>
+      <button class="btn btn-info mr-auto" data-toggle="modal" data-target="#exampleModal">
+        Create+
+      </button>
+      <div class="modal fade" id="exampleModal"
+           tabindex="-1" role="dialog"
+           aria-labelledby="exampleModalLabel"
+           aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Create a blog
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="inputTitle">Title</label>
+                  <input type="text" class="form-control" id="inputTitle" aria-describedby="title" placeholder="Create a title">
+                </div>
+                <div class="form-group">
+                  <label for="inputBody">Description</label>
+                  <textarea class="form-control" id="inputBody" placeholder="Describe your blog"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Create Blog
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <span class="navbar-text">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -82,6 +123,7 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { postService } from '../services/PostService'
 export default {
   name: 'Navbar',
   setup() {
